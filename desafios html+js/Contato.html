@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <style>
+        body {
+            background-color: #ffc4ef;
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background: #ff97e3;
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        input, textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 3px solid #ff00bb;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background: rgb(135, 0, 128);
+            color: #ff97e3;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background: rgb(119, 0, 113);
+        }
+    </style>
+</head>
+<body>
+    <h1>Contato</h1>
+    <form id="contactForm" action="#" method="POST" onsubmit="return validateForm()">
+        <input type="text" id="nome" name="nome" placeholder="Nome" required>
+        <input type="email" id="email" name="email" placeholder="E-mail" required>
+        <input type="text" id="endereco" name="endereco" placeholder="Endereço">
+        <input type="text" id="cep" name="cep" placeholder="CEP">
+        <input type="tel" id="telefone" name="telefone" placeholder="Telefone">
+        <textarea id="mensagem" name="mensagem" placeholder="Mensagem" rows="4" required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            let nome = document.getElementById("nome").value;
+            let email = document.getElementById("email").value;
+            let mensagem = document.getElementById("mensagem").value;
+            
+            if (nome.length < 3) {
+                alert("O nome deve ter pelo menos 3 caracteres.");
+                return false;
+            }
+            
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Por favor, insira um e-mail válido.");
+                return false;
+            }
+            
+            if (mensagem.trim() === "") {
+                alert("A mensagem não pode estar vazia.");
+                return false;
+            }
+            
+            alert("Formulário enviado com sucesso!");
+            return true;
+        }
+    </script>
+</body>
+</html>

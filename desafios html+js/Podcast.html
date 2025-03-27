@@ -1,0 +1,115 @@
+<!DOCTYPE html>  
+<html lang="pt-BR">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>So Cultured Podcast</title>  
+   
+    <style>  
+        body {  
+            font-family: 'Times New Roman', Times, serif;  
+            margin: 0;  
+            padding: 40px;  
+            background-color: #E6A8FF;  /* Fundo lilás */
+            text-align: center;  
+        }  
+        header {  
+            margin-bottom: 40px;  
+        }  
+        h1 {  
+            font-size: 2.5em;  
+        }  
+        section {  
+            margin: 0 auto;  
+            max-width: 800px;  
+        }  
+        iframe {  
+            width: 100%;  
+            height: 232px;  
+            max-width: 600px;  
+            margin: 20px auto;  
+            display: block;  
+        }  
+        p {  
+            font-size: 1.1em;  
+            line-height: 1.6em;  
+            margin: 20px 0;  
+        }  
+        table {  
+            width: 100%;  
+            border-collapse: collapse;  
+            margin-top: 40px;  
+            margin-bottom: 40px;  
+        }  
+        th, td {  
+            text-align: left;  
+            padding: 10px;  
+        }  
+
+        /* Estilo para o botão de alteração do título */
+        .change-title {
+            cursor: pointer;
+            color: #4CAF50;
+            text-decoration: underline;
+        }
+    </style>  
+</head>  
+<body>  
+    <header>  
+        <h1>So Cultured Podcast <br>Liv Grant & Taz Shipley</h1>  
+    </header>  
+
+    <section>  
+        <h2 id="recent-episode-title" onclick="changeTitle()">Episódio Mais Recente</h2>  
+        <iframe class="spotify-player" src="https://open.spotify.com/embed/episode/5Iwb2ziB8UJ8z5BJVWnKMe" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>  
+        <p>Welcome to "SO CULTURED" the podcast where science, tech, 
+            and a dash of sass collide! Join your hosts Liv, and Taz 
+            on a journey through the latest in the world of science and 
+            technology. Each week, we dish up a blend of cutting-edge news, 
+            discoveries, and sizzling gossip from the realms of labs and 
+            circuits. All served with a side of piping hot "laboratea" that 
+            will have you laughing out loud. </p>  
+    </section>  
+
+    <table>  
+        <thead>  
+            <tr>  
+                <th>Título</th>  
+                <th>Data</th>  
+                <th>Duração</th>  
+            </tr>  
+        </thead>  
+        <tbody>  
+            <tr>  
+                <td>1. ORIGINS OF VIRUSES+my lab is a cult... </td>  
+                <td>04 de dezembro de 2024</td>  
+                <td>30:00</td>  
+            </tr>  
+            <tr>  
+                <td>2. ORIGINS OF AI+sending an accidental n*de to your PI? </td>  
+                <td>11 de dezembro de 2024</td>  
+                <td>45:12</td>  
+            </tr>  
+            <tr>  
+                <td>3. ORIGINS OF SLEEP+am i delulu for fancying my TA?</td>  
+                <td>18 de dezembro de 2024</td>  
+                <td>52:47</td>  
+            </tr>  
+        </tbody>  
+    </table>  
+
+    <script>
+        // Função para alterar o título do episódio mais recente
+        function changeTitle() {
+            var newTitle = prompt("Digite um novo título para o episódio:");
+            if (newTitle) {
+                document.getElementById("recent-episode-title").textContent = newTitle;
+            }
+        }
+
+        // Mensagem de boas-vindas após o carregamento
+        window.onload = function() {
+            alert("Bem-vindo ao So Cultured Podcast! Aproveite os episódios.");
+        };
+    </script>
+</body>  
+</html>  

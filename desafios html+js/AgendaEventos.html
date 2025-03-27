@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Eventos</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        header {
+            background-color: #00796b;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #00796b;
+            border-bottom: 2px solid #00796b;
+            padding-bottom: 5px;
+        }
+
+        .evento {
+            background-color: #b2dfdb;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .evento-passado {
+            background-color: #cfd8dc;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        footer {
+            background-color: #00796b;
+            padding: 10px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #00796b;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #00796b;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        Agenda de Eventos
+    </header>
+
+    <div class="container">
+        <h2>📅 Eventos Futuros</h2>
+
+        <div id="eventosFuturos">
+            <!-- Eventos futuros serão adicionados aqui -->
+        </div>
+
+        <h2>📌 Eventos Passados</h2>
+
+        <div id="eventosPassados">
+            <!-- Eventos passados serão adicionados aqui -->
+        </div>
+
+        <h2>📑 Adicionar Novo Evento</h2>
+        <form id="formEvento">
+            <input type="text" id="data" placeholder="Data do Evento" required>
+            <input type="text" id="hora" placeholder="Hora do Evento" required>
+            <textarea id="descricao" placeholder="Descrição do Evento" rows="4" required></textarea>
+            <button type="submit">Adicionar Evento</button>
+        </form>
+    </div>
+
+    <footer>
+        © 2025 Agenda de Eventos - Todos os direitos reservados.
+    </footer>
+
+    <script>
+        // Função para adicionar um novo evento
+        document.getElementById("formEvento").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const data = document.getElementById("data").value;
+            const hora = document.getElementById("hora").value;
+            const descricao = document.getElementById("descricao").value;
+
+            const eventoDiv = document.createElement("div");
+            eventoDiv.classList.add("evento");
+            eventoDiv.innerHTML = `
+                <p><strong>Data:</strong> ${data}</p>
+                <p><strong>Hora:</strong> ${hora}</p>
+                <p><strong>Descrição:</strong> ${descricao}</p>
+            `;
+
+            eventoDiv.addEventListener("click", function() {
+                if (eventoDiv.classList.contains("evento-passado")) {
+                    eventoDiv.classList.remove("evento-passado");
+                } else {
+                    eventoDiv.classList.add("evento-passado");
+                }
+            });
+
+            document.getElementById("eventosFuturos").appendChild(eventoDiv);
+
+            // Limpar o formulário
+            document.getElementById("formEvento").reset();
+        });
+
+        // Função para criar eventos iniciais
+        function criarEventosIniciais() {
+            const eventosFuturos = [
+                { data: '25 de Março de 2025', hora: '19h00', descricao: 'Evento 1' },
+                { data: '10 de Abril de 2025', hora: '14h30', descricao: 'Evento 2' },
+                { data: '5 de Maio de 2025', hora: '16h00', descricao: 'Evento 3' }
+            ];
+
+            const eventosPassados = [
+                { data: '15 de Janeiro de 2025', hora: '18h00', descricao: 'Evento 4' },
+                { data: '28 de Fevereiro de 2025', hora: '10h00', descricao: 'Evento 5' }
+            ];
+
+            eventosFuturos.forEach(evento => {
+                const eventoDiv = document.createElement("div");
+                eventoDiv.classList.add("evento");
+                eventoDiv.innerHTML = `
+                    <p><strong>Data:</strong> ${evento.data}</p>
+                    <p><strong>Hora:</strong> ${evento.hora}</p>
+                    <p><strong>Descrição:</strong> ${evento.descricao}</p>
+                `;
+                eventoDiv.addEventListener("click", function() {
+                    eventoDiv.classList.add("evento-passado");
+                    document.getElementById("eventosPassados").appendChild(eventoDiv);
+                });
+
+                document.getElementById("eventosFuturos").appendChild(eventoDiv);
+            });
+
+            eventosPassados.forEach(evento => {
+                const eventoDiv = document.createElement("div");
+                eventoDiv.classList.add("evento", "evento-passado");
+                eventoDiv.innerHTML = `
+                    <p><strong>Data:</strong> ${evento.data}</p>
+                    <p><strong>Hora:</strong> ${evento.hora}</p>
+                    <p><strong>Descrição:</strong> ${evento.descricao}</p>
+                `;
+                document.getElementById("eventosPassados").appendChild(eventoDiv);
+            });
+        }
+
+        // Carregar eventos iniciais ao carregar a página
+        window.onload = criarEventosIniciais;
+    </script>
+
+</body>
+
+</html>
